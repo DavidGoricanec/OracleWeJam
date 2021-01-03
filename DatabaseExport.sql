@@ -190,8 +190,9 @@ Insert into BANDFINDER.USERS (USR_ID,FIRSTNAME,LASTNAME,BIRTHDAY,LATITUDE,LONGIT
 Insert into BANDFINDER.USERS (USR_ID,FIRSTNAME,LASTNAME,BIRTHDAY,LATITUDE,LONGITUDE,SESSION_KEY,SESSION_EXPIRE_DATE,EMAIL,PASSWORD) values (21,'Manuel','Mune',to_date('07.02.93','DD.MM.RR'),40.73061,-73.935242,null,null,'2.2@email.com','1234');
 Insert into BANDFINDER.USERS (USR_ID,FIRSTNAME,LASTNAME,BIRTHDAY,LATITUDE,LONGITUDE,SESSION_KEY,SESSION_EXPIRE_DATE,EMAIL,PASSWORD) values (22,'Danial','Hard',to_date('09.10.95','DD.MM.RR'),40.73061,-73.935242,null,null,'3.1@email.com','1234');
 Insert into BANDFINDER.USERS (USR_ID,FIRSTNAME,LASTNAME,BIRTHDAY,LATITUDE,LONGITUDE,SESSION_KEY,SESSION_EXPIRE_DATE,EMAIL,PASSWORD) values (23,'Michelle','Cloud',to_date('29.06.98','DD.MM.RR'),40.73061,-73.935242,null,null,'4.1@email.com','1234');
-Insert into BANDFINDER.USERS (USR_ID,FIRSTNAME,LASTNAME,BIRTHDAY,LATITUDE,LONGITUDE,SESSION_KEY,SESSION_EXPIRE_DATE,EMAIL,PASSWORD) values (1,'David','Goricanec',to_date('23.07.96','DD.MM.RR'),46.8883,15.5132,null,null,'5.1@email.com','1234A');
+Insert into BANDFINDER.USERS (USR_ID,FIRSTNAME,LASTNAME,BIRTHDAY,LATITUDE,LONGITUDE,SESSION_KEY,SESSION_EXPIRE_DATE,EMAIL,PASSWORD) values (1,'David','Goricanec',to_date('23.07.96','DD.MM.RR'),46.8883,15.5132,'B800C9553D49C463E0538D10000A0BB3',to_date('04.01.21','DD.MM.RR'),'5.1@email.com','1234A');
 Insert into BANDFINDER.USERS (USR_ID,FIRSTNAME,LASTNAME,BIRTHDAY,LATITUDE,LONGITUDE,SESSION_KEY,SESSION_EXPIRE_DATE,EMAIL,PASSWORD) values (5,'Herbert','Mauer',to_date('05.12.90','DD.MM.RR'),47.0667,15.45,null,null,'6.1@email.com','1234');
+Insert into BANDFINDER.USERS (USR_ID,FIRSTNAME,LASTNAME,BIRTHDAY,LATITUDE,LONGITUDE,SESSION_KEY,SESSION_EXPIRE_DATE,EMAIL,PASSWORD) values (41,'PUT','TEST',to_date('01.11.80','DD.MM.RR'),1,1,'B80136AAE3E8723BE0538D10000AF4BD',to_date('04.01.21','DD.MM.RR'),'test@ff.cdd','1234');
 Insert into BANDFINDER.USERS (USR_ID,FIRSTNAME,LASTNAME,BIRTHDAY,LATITUDE,LONGITUDE,SESSION_KEY,SESSION_EXPIRE_DATE,EMAIL,PASSWORD) values (4,'Sabrina','Haidinger',to_date('23.04.97','DD.MM.RR'),46.9653,15.4803,null,null,'7.1@email.com','1234');
 REM INSERTING into BANDFINDER.USER_INSTRUMENTS
 SET DEFINE OFF;
@@ -299,13 +300,16 @@ ALTER TRIGGER "BANDFINDER"."DEPT_TRG1" ENABLE;
 /
 ALTER TRIGGER "BANDFINDER"."EMP_TRG1" ENABLE;
 --------------------------------------------------------
---  DDL for Function CREATE_NEW_SESSION
+--  DDL for Procedure CREATE_NEW_SESSION
 --------------------------------------------------------
+set define off;
 
-  CREATE OR REPLACE EDITIONABLE FUNCTION "BANDFINDER"."CREATE_NEW_SESSION" (
-    p_email      IN   users.email%TYPE,
-    p_password   IN   users.password%TYPE
-) RETURN VARCHAR2 IS
+  CREATE OR REPLACE EDITIONABLE PROCEDURE "BANDFINDER"."CREATE_NEW_SESSION" (
+    p_email       IN   users.email%TYPE,
+    p_password    IN   users.password%TYPE,
+    p_session_key OUT  users.session_key%TYPE,
+    p_session_expire_date OUT users.session_expire_date%TYPE
+)IS
     v_user users%rowtype;
 BEGIN
     BEGIN
@@ -323,10 +327,55 @@ BEGIN
             RAISE;
     END;
 
-    v_user.session_key := sys_guid();
-    v_user.session_expire_date := sysdate+1;
-    
-    return v_user.session_key ||';'||TO_CHAR(v_user.session_expire_date, 'DD.MM.YYYY HH24:MI:SS');
+    p_session_key := sys_guid();
+    p_session_expire_date := sysdate+1;
+
+    UPDATE users
+       SET session_key = p_session_key
+          ,session_expire_date = p_session_expire_date
+    WHERE usr_id = v_user.usr_id;
+
+END;
+
+/
+--------------------------------------------------------
+--  DDL for Procedure CREATE_NEW_USER
+--------------------------------------------------------
+set define off;
+
+  CREATE OR REPLACE EDITIONABLE PROCEDURE "BANDFINDER"."CREATE_NEW_USER" (
+    p_firstname  IN users.firstname%TYPE,
+    p_lastname   IN users.lastname%TYPE,
+    p_birthday   IN users.birthday%TYPE,
+    p_latitude   IN users.latitude%TYPE,
+    p_longitude  IN users.longitude%TYPE,
+    p_email      IN users.email%TYPE,
+    p_password   IN users.password%TYPE,
+    p_session_key         OUT  users.session_key%TYPE,
+    p_session_expire_date OUT users.session_expire_date%TYPE
+)IS
+
+BEGIN
+   INSERT INTO users (firstname,
+                      lastname,
+                      birthday,
+                      latitude,
+                      longitude,
+                      email,
+                      password)
+   VALUES(  p_firstname,
+            p_lastname,
+            p_birthday,
+            p_latitude,
+            p_longitude,
+            p_email,
+            p_password);
+
+   create_new_session (
+    p_email       =>   p_email,
+    p_password    =>   p_password,
+    p_session_key =>   p_session_key,
+    p_session_expire_date => p_session_expire_date);
 END;
 
 /
