@@ -1,7 +1,8 @@
 var cloud_url = "https://vlthasl7otj6fl7-db202010251751.adb.eu-frankfurt-1.oraclecloudapps.com/ords/bandfinder/users";
 
 
-function set_session() {
+function set_session(e) {
+
   var data;
   var email = document.getElementById("inputEmail").value;
   var pw = document.getElementById("inputPassword").value;
@@ -21,10 +22,11 @@ function set_session() {
           data = JSON.parse(request.responseText);
           if(data.status == 200)
           {
+              e.preventDefault();
               //Login successfull
               window.localStorage.setItem("session_key", data.session_key);
               window.localStorage.setItem("session_expire_date", data.session_expire_date);
-              alert("Data: "+ window.localStorage.getItem("session_key"));
+              window.location.href="./overview.html";
           }
           else {
             alert(data.err_msg);
