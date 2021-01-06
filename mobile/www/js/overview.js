@@ -1,6 +1,6 @@
 function build_overview_html_body(users)
 {
-  console.log(users);
+  //console.log(users);
   var html_string = "";
 
   for (var i = 0; i < users.length; i++) {
