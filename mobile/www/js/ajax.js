@@ -38,3 +38,55 @@ function set_session(e) {
     request.send();
   }
 }
+
+function registrate_ajax(firstName, lastName, email, birthday, latitude, longitude, password)
+{
+  var request = new XMLHttpRequest();
+
+  request.open("PUT",cloud_url+"/auth", false);
+  request.setRequestHeader("firstname",firstName);
+  request.setRequestHeader("lastname",lastName);
+  request.setRequestHeader("birthday",birthday);
+  request.setRequestHeader("latitude",latitude);
+  request.setRequestHeader("longitude",longitude);
+  request.setRequestHeader("email",email);
+  request.setRequestHeader("password",password);
+  request.addEventListener('load', function(event) {
+     if (request.status >= 200 && request.status < 300) {
+        data = JSON.parse(request.responseText);
+        if(data.status == 200)
+        {
+            //Login successfull
+            window.localStorage.setItem("session_key", data.session_key);
+            window.localStorage.setItem("session_expire_date", data.session_expire_date);
+            window.location.href="./overview.html";
+        }
+        else {
+          alert(data.err_msg);
+        }
+     } else {
+        alert(request.responseText);
+     }
+  });
+  request.send();
+}
+
+function get_users()
+{
+  var request = new XMLHttpRequest();
+
+  request.open("GET",cloud_url+"/search_results", true);
+  request.setRequestHeader("distance_radius",50);
+  request.setRequestHeader("session_key",window.localStorage.getItem("session_key"));
+  //request.setRequestHeader("session_key","B81D4F6086473352E0538D10000A0504");
+  request.setRequestHeader("intruments_filter",null);
+  request.addEventListener('load', function(event) {
+     if (request.status >= 200 && request.status < 300) {
+        data = JSON.parse(request.responseText);
+        build_overview_html_body(data.items);
+     } else {
+        alert(request.responseText);
+     }
+  });
+  request.send();
+}
