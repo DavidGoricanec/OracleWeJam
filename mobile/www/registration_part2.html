@@ -36,7 +36,7 @@
       <h2>WeJam - Registration</h2>
       </div>
       <div class="col-12">
-        <form class="needs-validation" novalidate>
+        <form class="needs-validation" novalidate  onsubmit="save_instrument_data(event)">
           <div class="row g-3">
             <div class="col-12">
               <label for="instrument_selection" class="form-label">I play (Multiple selections possible)</label>
@@ -50,6 +50,14 @@
               <select class="selectpicker form-control" id="play_level_selection" >
 
               </select>
+            </div>
+
+            <div class="col-12">
+              <label for="started_playing" class="form-label">Musician since</label>
+              <input type="date" class="form-control" id="started_playing" required>
+              <div class="invalid-feedback">
+                Valid Date is required.
+              </div>
             </div>
 
             <div class="col-12">

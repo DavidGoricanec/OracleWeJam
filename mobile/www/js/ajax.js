@@ -26,7 +26,7 @@ function set_session(e) {
               //Login successfull
               window.localStorage.setItem("session_key", data.session_key);
               window.localStorage.setItem("session_expire_date", data.session_expire_date);
-              window.location.href="./overview.html";
+              window.location="./overview.html";
           }
           else {
             alert(data.err_msg);
@@ -59,9 +59,9 @@ function registrate_ajax(firstName, lastName, email, birthday, latitude, longitu
             //Login successfull
             window.localStorage.setItem("session_key", data.session_key);
             window.localStorage.setItem("session_expire_date", data.session_expire_date);
-            window.sessionStorage.setItem("firstname", firstName);
-            window.sessionStorage.setItem("lastname", lastName);
-            window.location.href="./registration_part2.html";
+            //window.sessionStorage.setItem("firstname", firstName);
+            //window.sessionStorage.setItem("lastname", lastName);
+            window.location="./registration_part2.html";
         }
         else {
           alert(data.err_msg);
@@ -133,4 +133,44 @@ function get_instruments()
      }
   });
   request.send();
+}
+
+function put_insturment(array_string)
+{
+  var request = new XMLHttpRequest();
+
+  request.open("PUT",cloud_url+"/instruments", true);
+  request.setRequestHeader("array_string",array_string);
+  request.setRequestHeader("session_key",window.localStorage.getItem("session_key"));
+  request.addEventListener('load', function(event) {
+     if (request.status >= 200 && request.status < 300) {
+        data = JSON.parse(request.responseText);
+        if (data.status == 200)
+        {
+          
+          window.location="./overview.html";
+        }
+        else {
+          alert(data.err_msg);
+        }
+     } else {
+        alert(request.responseText);
+     }
+  });
+  request.send();
+}
+
+
+function formatDate(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2)
+        month = '0' + month;
+    if (day.length < 2)
+        day = '0' + day;
+
+    return [day, month, year].join('.');
 }

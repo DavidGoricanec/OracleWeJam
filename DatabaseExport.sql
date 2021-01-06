@@ -2,6 +2,13 @@
 --  File created - Wednesday-January-06-2021   
 --------------------------------------------------------
 --------------------------------------------------------
+--  DDL for Type NT_SPLIT_RESULT
+--------------------------------------------------------
+
+  CREATE OR REPLACE EDITIONABLE TYPE "BANDFINDER"."NT_SPLIT_RESULT" IS TABLE OF VARCHAR2(4000)
+
+/
+--------------------------------------------------------
 --  DDL for Sequence DEPT_SEQ
 --------------------------------------------------------
 
@@ -215,23 +222,20 @@ Insert into BANDFINDER.PLAY_LEVEL_STR (PLAY_LEVEL,DESCRIPTION) values (40,'Profe
 REM INSERTING into BANDFINDER.USERS
 SET DEFINE OFF;
 Insert into BANDFINDER.USERS (USR_ID,FIRSTNAME,LASTNAME,BIRTHDAY,LATITUDE,LONGITUDE,SESSION_KEY,SESSION_EXPIRE_DATE,EMAIL,PASSWORD) values (3,'TestFirstname','TestLastname',to_date('23.01.96','DD.MM.RR'),46.8282,15.2087,null,null,'1.1@email.com','1234');
+Insert into BANDFINDER.USERS (USR_ID,FIRSTNAME,LASTNAME,BIRTHDAY,LATITUDE,LONGITUDE,SESSION_KEY,SESSION_EXPIRE_DATE,EMAIL,PASSWORD) values (63,'Sangina','Haidinger',to_date('06.01.07','DD.MM.RR'),47.0886344,15.4161392,'B8430AE1D2C02279E0538D10000A95FF',to_date('07.01.21','DD.MM.RR'),'sangi@hub.com','1278');
 Insert into BANDFINDER.USERS (USR_ID,FIRSTNAME,LASTNAME,BIRTHDAY,LATITUDE,LONGITUDE,SESSION_KEY,SESSION_EXPIRE_DATE,EMAIL,PASSWORD) values (21,'Manuel','Mune',to_date('07.02.93','DD.MM.RR'),40.73061,-73.935242,null,null,'2.2@email.com','1234');
 Insert into BANDFINDER.USERS (USR_ID,FIRSTNAME,LASTNAME,BIRTHDAY,LATITUDE,LONGITUDE,SESSION_KEY,SESSION_EXPIRE_DATE,EMAIL,PASSWORD) values (22,'Danial','Hard',to_date('09.10.95','DD.MM.RR'),40.73061,-73.935242,null,null,'3.1@email.com','1234');
 Insert into BANDFINDER.USERS (USR_ID,FIRSTNAME,LASTNAME,BIRTHDAY,LATITUDE,LONGITUDE,SESSION_KEY,SESSION_EXPIRE_DATE,EMAIL,PASSWORD) values (23,'Michelle','Cloud',to_date('29.06.98','DD.MM.RR'),40.73061,-73.935242,null,null,'4.1@email.com','1234');
+Insert into BANDFINDER.USERS (USR_ID,FIRSTNAME,LASTNAME,BIRTHDAY,LATITUDE,LONGITUDE,SESSION_KEY,SESSION_EXPIRE_DATE,EMAIL,PASSWORD) values (62,'TestUser','LastName',to_date('27.01.21','DD.MM.RR'),47.0886596,15.415957400000002,'B84255778D153180E0538D10000A07F9',to_date('07.01.21','DD.MM.RR'),'sd@fw.com','1234');
 Insert into BANDFINDER.USERS (USR_ID,FIRSTNAME,LASTNAME,BIRTHDAY,LATITUDE,LONGITUDE,SESSION_KEY,SESSION_EXPIRE_DATE,EMAIL,PASSWORD) values (1,'David','Goricanec',to_date('23.07.96','DD.MM.RR'),46.8883,15.5132,'B831B5EEFB6ED619E0538D10000ABE4C',to_date('07.01.21','DD.MM.RR'),'5.1@email.com','1234A');
 Insert into BANDFINDER.USERS (USR_ID,FIRSTNAME,LASTNAME,BIRTHDAY,LATITUDE,LONGITUDE,SESSION_KEY,SESSION_EXPIRE_DATE,EMAIL,PASSWORD) values (5,'Herbert','Mauer',to_date('05.12.90','DD.MM.RR'),47.0667,15.45,null,null,'6.1@email.com','1234');
-Insert into BANDFINDER.USERS (USR_ID,FIRSTNAME,LASTNAME,BIRTHDAY,LATITUDE,LONGITUDE,SESSION_KEY,SESSION_EXPIRE_DATE,EMAIL,PASSWORD) values (55,'Felete','Delte',to_date('14.01.21','DD.MM.RR'),47.0886277,15.416151,'B83BAADCE44427A0E0538D10000A84C3',to_date('07.01.21','DD.MM.RR'),'gh@g2.com','1235');
-Insert into BANDFINDER.USERS (USR_ID,FIRSTNAME,LASTNAME,BIRTHDAY,LATITUDE,LONGITUDE,SESSION_KEY,SESSION_EXPIRE_DATE,EMAIL,PASSWORD) values (57,'Test','Delgg',to_date('09.01.21','DD.MM.RR'),47.0886613,15.4161202,'B83BE07FC2AE1401E0538D10000AC23C',to_date('07.01.21','DD.MM.RR'),'245@hh.com','hgkkeieie');
 Insert into BANDFINDER.USERS (USR_ID,FIRSTNAME,LASTNAME,BIRTHDAY,LATITUDE,LONGITUDE,SESSION_KEY,SESSION_EXPIRE_DATE,EMAIL,PASSWORD) values (4,'Sabrina','Haidinger',to_date('23.04.97','DD.MM.RR'),46.9653,15.4803,null,null,'7.1@email.com','1234');
-Insert into BANDFINDER.USERS (USR_ID,FIRSTNAME,LASTNAME,BIRTHDAY,LATITUDE,LONGITUDE,SESSION_KEY,SESSION_EXPIRE_DATE,EMAIL,PASSWORD) values (54,'Felete','Delte',to_date('14.01.21','DD.MM.RR'),47.0886494,15.4161377,'B83BA548F77B9BB0E0538D10000A1F31',to_date('07.01.21','DD.MM.RR'),'gh@g.com','1234');
-Insert into BANDFINDER.USERS (USR_ID,FIRSTNAME,LASTNAME,BIRTHDAY,LATITUDE,LONGITUDE,SESSION_KEY,SESSION_EXPIRE_DATE,EMAIL,PASSWORD) values (56,'Picture','Test',to_date('22.01.21','DD.MM.RR'),47.0886568,15.4161237,'B83BD53A3B70EE9AE0538D10000A9675',to_date('07.01.21','DD.MM.RR'),'hh@fn.n.com','124');
-Insert into BANDFINDER.USERS (USR_ID,FIRSTNAME,LASTNAME,BIRTHDAY,LATITUDE,LONGITUDE,SESSION_KEY,SESSION_EXPIRE_DATE,EMAIL,PASSWORD) values (58,'Rff','Ggg',to_date('23.01.21','DD.MM.RR'),47.088636,15.4161378,'B83BD53A3B71EE9AE0538D10000A9675',to_date('07.01.21','DD.MM.RR'),'fgh@dg.com','fhjh');
 REM INSERTING into BANDFINDER.USER_INSTRUMENTS
 SET DEFINE OFF;
 Insert into BANDFINDER.USER_INSTRUMENTS (USR_INS_ID,USR_ID,INSTR_CODE,STARTED_PLAYING,PLAY_LEVEL) values (16,5,'XYP',to_date('01.06.20','DD.MM.RR'),10);
-Insert into BANDFINDER.USER_INSTRUMENTS (USR_INS_ID,USR_ID,INSTR_CODE,STARTED_PLAYING,PLAY_LEVEL) values (1,1,'GTR',to_date('01.12.16','DD.MM.RR'),20);
 Insert into BANDFINDER.USER_INSTRUMENTS (USR_INS_ID,USR_ID,INSTR_CODE,STARTED_PLAYING,PLAY_LEVEL) values (2,4,'PNO',to_date('01.10.10','DD.MM.RR'),10);
-Insert into BANDFINDER.USER_INSTRUMENTS (USR_INS_ID,USR_ID,INSTR_CODE,STARTED_PLAYING,PLAY_LEVEL) values (3,1,'PNO',to_date('01.02.20','DD.MM.RR'),10);
+Insert into BANDFINDER.USER_INSTRUMENTS (USR_INS_ID,USR_ID,INSTR_CODE,STARTED_PLAYING,PLAY_LEVEL) values (23,1,'SXPN',to_date('12.01.21','DD.MM.RR'),10);
+Insert into BANDFINDER.USER_INSTRUMENTS (USR_INS_ID,USR_ID,INSTR_CODE,STARTED_PLAYING,PLAY_LEVEL) values (24,62,'VLN',to_date('12.01.21','DD.MM.RR'),10);
 Insert into BANDFINDER.USER_INSTRUMENTS (USR_INS_ID,USR_ID,INSTR_CODE,STARTED_PLAYING,PLAY_LEVEL) values (4,3,'XYP',to_date('01.12.08','DD.MM.RR'),40);
 Insert into BANDFINDER.USER_INSTRUMENTS (USR_INS_ID,USR_ID,INSTR_CODE,STARTED_PLAYING,PLAY_LEVEL) values (5,3,'TRPT',to_date('01.08.19','DD.MM.RR'),10);
 Insert into BANDFINDER.USER_INSTRUMENTS (USR_INS_ID,USR_ID,INSTR_CODE,STARTED_PLAYING,PLAY_LEVEL) values (6,5,'DRM',to_date('01.04.17','DD.MM.RR'),30);
@@ -243,6 +247,7 @@ Insert into BANDFINDER.USER_INSTRUMENTS (USR_INS_ID,USR_ID,INSTR_CODE,STARTED_PL
 Insert into BANDFINDER.USER_INSTRUMENTS (USR_INS_ID,USR_ID,INSTR_CODE,STARTED_PLAYING,PLAY_LEVEL) values (12,23,'TRPT',to_date('01.09.10','DD.MM.RR'),20);
 Insert into BANDFINDER.USER_INSTRUMENTS (USR_INS_ID,USR_ID,INSTR_CODE,STARTED_PLAYING,PLAY_LEVEL) values (13,23,'VLN',to_date('01.09.10','DD.MM.RR'),40);
 Insert into BANDFINDER.USER_INSTRUMENTS (USR_INS_ID,USR_ID,INSTR_CODE,STARTED_PLAYING,PLAY_LEVEL) values (14,4,'GTR',to_date('01.12.18','DD.MM.RR'),10);
+Insert into BANDFINDER.USER_INSTRUMENTS (USR_INS_ID,USR_ID,INSTR_CODE,STARTED_PLAYING,PLAY_LEVEL) values (25,63,'FLT',to_date('06.01.81','DD.MM.RR'),40);
 --------------------------------------------------------
 --  DDL for Index CONSTRAINT_MEDIA_PROFILE_PIC
 --------------------------------------------------------
@@ -422,6 +427,49 @@ END;
 
 /
 --------------------------------------------------------
+--  DDL for Procedure UPSERT_USER_INSTRUEMNTS
+--------------------------------------------------------
+set define off;
+
+  CREATE OR REPLACE EDITIONABLE PROCEDURE "BANDFINDER"."UPSERT_USER_INSTRUEMNTS" (p_session_key users.session_key%TYPE
+                                                   ,p_instr_code user_instruments.instr_code%TYPE
+                                                   ,p_play_level user_instruments.play_level%TYPE
+                                                   ,p_started_playing user_instruments.started_playing%TYPE)
+IS
+    v_cnt NUMBER;
+    v_usr_id NUMBER;
+BEGIN
+    SELECT usr_id
+      INTO v_usr_id
+      FROM users
+     WHERE session_key = p_session_key;
+
+     DELETE FROM user_instruments
+     WHERE usr_id = v_usr_id;
+     
+     SELECT COUNT(*)
+       INTO v_cnt
+       FROM user_instruments
+      WHERE usr_id = v_usr_id
+        AND instr_code = p_instr_code;
+
+    IF v_cnt = 0
+    THEN
+        INSERT INTO user_instruments(usr_id,instr_code,play_level,started_playing)
+        VALUES (v_usr_id,p_instr_code, p_play_level,p_started_playing);
+    ELSE
+    /*
+        UPDATE user_instruments
+           SET play_level =  p_play_level
+              ,started_playing = p_started_playing
+        WHERE usr_id = v_usr_id
+          AND instr_code = p_instr_code;*/
+          RAISE_APPLICATION_ERROR(-21000,'Data found but shouldbe delted');
+    END IF;
+END;
+
+/
+--------------------------------------------------------
 --  DDL for Function DISTANCE
 --------------------------------------------------------
 
@@ -438,6 +486,72 @@ BEGIN
         (COS(NVL(Lat1,0) / DegToRad) * COS(NVL(Lat2,0) / DegToRad) *
          COS(NVL(Lon2,0) / DegToRad - NVL(Lon1,0)/ DegToRad))));
 END;
+
+/
+--------------------------------------------------------
+--  DDL for Function F_SPLIT_STRING_INTO_ARRAY
+--------------------------------------------------------
+
+  CREATE OR REPLACE EDITIONABLE FUNCTION "BANDFINDER"."F_SPLIT_STRING_INTO_ARRAY" 
+(pi_str IN VARCHAR2
+,pi_delimiter IN VARCHAR2
+) RETURN nt_split_result
+IS
+/** Function extracts parts of a string which are enclosed with an individual delimiter
+*
+* @author Karsten Besserdich
+* @company Besserdich & Redmann GmbH
+* @email kb@besserdich-redmann.com
+* @URL www.besserdich.com
+* @Date 20.08.2015
+*
+* @param pi_str string to split
+* @param pi_delimiter Delimter
+* @return Nested Table with extracted strings
+*
+* You can use this function in PL/SQL and SQL!
+*/
+lv_list nt_split_result := nt_split_result();
+lv_position INTEGER := 1;
+lv_result INTEGER := 1;
+
+BEGIN
+-- String muss gefüllt sein
+IF LENGTH(pi_str) != 0
+THEN
+LOOP
+-- an welcher Stelle tritt Delimter ab der Postition X als nächstes auf
+lv_result := INSTR(pi_str,pi_delimiter,lv_position);
+-- weitergehen, ggf. mehrere Delimiter hintereinander im String
+IF lv_result = lv_position THEN
+lv_position := lv_position+1;
+CONTINUE;
+END IF;
+-- einen Teilstring zwischen zwei Delimiter gefunden
+IF lv_result > lv_position THEN
+lv_list.extend;
+lv_list(lv_list.last) := SUBSTR(pi_str,lv_position,lv_result-lv_position);
+lv_position := lv_result+1;
+CONTINUE;
+END IF;
+-- was am Ende gefunden und dann beende die Loop
+IF lv_result = 0 AND lv_position <= LENGTH(pi_str) THEN
+lv_list.extend;
+lv_list(lv_list.last) := SUBSTR(pi_str,lv_position,LENGTH(pi_str)-lv_position+1);
+EXIT;
+END IF;
+-- am Ende - beende die Loop
+IF lv_position > LENGTH(pi_str) THEN
+EXIT;
+END IF;
+END LOOP;
+END IF;
+
+RETURN lv_list;
+EXCEPTION
+WHEN OTHERS THEN
+RAISE;
+END f_split_string_into_array;
 
 /
 --------------------------------------------------------
