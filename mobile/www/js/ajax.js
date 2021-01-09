@@ -93,7 +93,7 @@ function get_users()
   request.send();
 }
 
-function upload_media(is_profile_picture, title, content_type, content)
+function upload_media(is_profile_picture, title, content_type, base64str)
 {
   var request = new XMLHttpRequest();
 
@@ -116,7 +116,7 @@ function upload_media(is_profile_picture, title, content_type, content)
         alert(request.responseText);
      }
   });
-  request.send(content);
+  request.send(base64str);
 }
 
 function get_instruments()
@@ -147,7 +147,7 @@ function put_insturment(array_string)
         data = JSON.parse(request.responseText);
         if (data.status == 200)
         {
-          
+
           window.location="./overview.html";
         }
         else {

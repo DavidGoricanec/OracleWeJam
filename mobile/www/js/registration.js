@@ -40,7 +40,7 @@ function registrate(e) {
     navigator.geolocation.getCurrentPosition(function(position) {
       var latitude = position.coords.latitude;
       var longitude = position.coords.longitude;
-
+      
       registrate_ajax(firstName, lastName, email, birthday, latitude, longitude, password);
 
     },

@@ -19,8 +19,8 @@
         <link rel="stylesheet" href="css/index.css">
         <!-- Bootstrap core CSS -->
         <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
-
-
+        <!--cordova js hack, needed here for the camera plugin -->
+        <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
         <title>We Jam</title>
     </head>
 
@@ -62,7 +62,7 @@
 
             <div class="col-12">
               <label for="btn_picture" class="form-label">Profile Picture</label>
-              <button class="w-100 btn btn-secondary btn-lg" id="btn_picture" onclick="set_profile_picture()">Select Profile Picture</button>
+              <button class="w-100 btn btn-secondary btn-lg" id="btn_picture" onclick="set_profile_picture(event)">Select Profile Picture</button>
             </div>
 
           <hr class="my-4">
