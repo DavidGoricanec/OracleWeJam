@@ -1,3 +1,8 @@
+function contact_whatsapp(phonenumber)
+{
+  null;
+}
+
 function build_overview_html_body(users)
 {
   //console.log(users);
@@ -12,8 +17,10 @@ function build_overview_html_body(users)
           '<p class="card-text">'+ users[i].firstname +' '+ users[i].lastname +'<br/>'+ users[i].birthday +'</p>'+
           '<div class="d-flex justify-content-between align-items-center">'+
             '<div class="btn-group">'+
-              '<button type="button" class="btn btn-sm btn-outline-secondary">View</button>'+
-              '<button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>'+
+              '<!--<button type="button" onclick="contact_whatsapp('+ users[i].phonenumber +')" class="btn btn-sm btn-outline-secondary">Contact Me! <i class="fa fa-whatsapp" aria-hidden="true"></i></button> -->' +
+              '<a class="hyperlink_button" href="whatsapp://send?phone=+43'+ users[i].phonenumber +'">WhatsApp <i class="fa fa-whatsapp" aria-hidden="true"></i></a>'+
+              '<a class="hyperlink_button" href="sms:+43'+ users[i].phonenumber +'">SMS <i class="fa fa-envelope" aria-hidden="true"></i></a>' +
+              '<a class="hyperlink_button" href="tel:+43'+ users[i].phonenumber +'">Call <i class="fa fa-phone" aria-hidden="true"></i></a>'+
             '</div>'+
             '<small class="text-muted">'+ users[i].distance +' km</small>'+
           '</div>'+

@@ -27,10 +27,11 @@ function registrate(e) {
   var email = document.getElementById("email").value;
   var birthday = document.getElementById("birthday").value;
   var password = document.getElementById("password").value;
+  var phonenumber = document.getElementById("phoneNumber").value;
 
   if (email == "" || email == null || lastName == "" || lastName == null
       || firstName == "" || firstName == null || birthday == "" || birthday == null
-      || password == "" || password == null)
+      || password == "" || password == null || phonenumber == "" || phonenumber == null)
   {
     alert("Please fill out all fields!");
   }
@@ -40,8 +41,8 @@ function registrate(e) {
     navigator.geolocation.getCurrentPosition(function(position) {
       var latitude = position.coords.latitude;
       var longitude = position.coords.longitude;
-      
-      registrate_ajax(firstName, lastName, email, birthday, latitude, longitude, password);
+
+      registrate_ajax(firstName, lastName, email, birthday, latitude, longitude, password, phonenumber);
 
     },
     //GPS Location Error
