@@ -99,6 +99,24 @@ function get_users()
   */
 }
 
+function get_single_user(usr_id)
+{
+  var request = new XMLHttpRequest();
+
+  request.open("GET",cloud_url+"/auth", true);
+  request.setRequestHeader("session_key",window.localStorage.getItem("session_key"));
+  request.setRequestHeader("usr_id",usr_id);
+  request.addEventListener('load', function(event) {
+     if (request.status >= 200 && request.status < 300) {
+        data = JSON.parse(request.responseText);
+        fill_out_profile_fields(data.items[0]);
+     } else {
+        alert(request.responseText);
+     }
+  });
+  request.send();
+}
+
 function upload_media(is_profile_picture, title, content_type, base64str)
 {
   var request = new XMLHttpRequest();

@@ -3,6 +3,18 @@ function contact_whatsapp(phonenumber)
   null;
 }
 
+function getAge(dateString) {
+    var dateParts = dateString.split(".");
+    var birthDate = new Date(+dateParts[2], dateParts[1] - 1, +dateParts[0]);
+    var today = new Date();
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+    }
+    return age;
+}
+
 function build_overview_html_body(users)
 {
   //console.log(users);
@@ -14,7 +26,7 @@ function build_overview_html_body(users)
       '<div class="card shadow-sm">' +
         '<img class= "card-img-top" focusable="false" height="225" src = "' + 'data:image/jpeg;base64,' + users[i].base64string +'"></img>'+
         '<div class="card-body">'+
-          '<p class="card-text">'+ users[i].firstname +' '+ users[i].lastname +'<br/>'+ users[i].birthday +'</p>'+
+          '<p class="card-text">'+ users[i].firstname +' '+ users[i].lastname +' ('+ getAge(users[i].birthday) + ')<br />' +users[i].playing_instruments +'</p>'+
           '<div class="d-flex justify-content-between align-items-center">'+
             '<div class="btn-group">'+
               '<!--<button type="button" onclick="contact_whatsapp('+ users[i].phonenumber +')" class="btn btn-sm btn-outline-secondary">Contact Me! <i class="fa fa-whatsapp" aria-hidden="true"></i></button> -->' +
