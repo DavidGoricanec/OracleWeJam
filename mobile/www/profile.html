@@ -25,7 +25,7 @@
     </head>
 
     <!-- Custom styles for this template -->
-    <link href="css/registration.css" rel="stylesheet">
+    <link href="css/overview.css" rel="stylesheet">
   </head>
   <body class="bg-light">
 
@@ -85,6 +85,24 @@
               </div>
             </div>
 
+            <div class="col-12">
+              <label for="instrument_selection" class="form-label">Instruments</label>
+              <input type="text" class="form-control" id="instruments" required>
+
+            </div>
+
+            <div class="col-12">
+              <label for="play_level_selection" class="form-label">Average PlayLevel</label>
+              <input type="text" class="form-control" id="play_level" required>
+            </div>
+
+            <div class="col-12">
+              <label for="started_playing" class="form-label">Musician since</label>
+              <input type="date" class="form-control" id="started_playing" required>
+              <div class="invalid-feedback">
+                Valid Date is required.
+              </div>
+            </div>
           <hr class="my-4">
 
           <button class="w-100 btn btn-primary btn-lg" type="submit">Update</button>

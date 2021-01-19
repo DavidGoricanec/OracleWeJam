@@ -34,10 +34,17 @@ function fill_out_profile_fields(data)
   document.getElementById("phoneNumber").value = data.phonenumber;
   document.getElementById("email").value = data.email;
   document.getElementById("birthday").value = data.birthday;
+  document.getElementById("started_playing").value = data.started_playing;
+  document.getElementById("play_level").value = data.playing_level;
+  document.getElementById("instruments").value = data.playing_instruments;
 
-  inputs = document.getElementsByTagName('input');
-  for (index = 0; index < inputs.length; ++index) {
-      inputs[index].setAttribute("disabled", "disabled");
+  if(data.edit_priv='N')
+  {
+    inputs = document.getElementsByTagName('input');
+    for (index = 0; index < inputs.length; ++index) {
+        inputs[index].setAttribute("disabled", "disabled");
+        inputs[index].classList.add("disabled");
+    }
   }
 
 }
