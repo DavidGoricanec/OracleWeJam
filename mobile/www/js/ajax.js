@@ -85,7 +85,6 @@ function get_users()
   request.open("GET",cloud_url+"/search_results", true);
   request.setRequestHeader("distance_radius",50);
   request.setRequestHeader("session_key",window.localStorage.getItem("session_key"));
-  //request.setRequestHeader("session_key","B81D4F6086473352E0538D10000A0504");
   request.setRequestHeader("intruments_filter",null);
   request.addEventListener('load', function(event) {
      if (request.status >= 200 && request.status < 300) {

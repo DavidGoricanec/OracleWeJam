@@ -1,8 +1,8 @@
 document.addEventListener('deviceready', onDeviceReady(), false);
 
 function onDeviceReady() {
-    //get_single_user(window.sessionStorage.getItem("usr_id"));
-    get_single_user(1);
+    get_single_user(window.sessionStorage.getItem("usr_id"));
+    //get_single_user(1);
 }
 
 function fill_out_profile_fields(data)
