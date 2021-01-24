@@ -1,13 +1,13 @@
 document.addEventListener('deviceready', onDeviceReady(), false);
 
 function onDeviceReady() {
-    get_single_user(window.sessionStorage.getItem("usr_id"));
-    //get_single_user(1);
+    //get_single_user(window.sessionStorage.getItem("usr_id"));
+    get_single_user(1);
 }
 
 function fill_out_profile_fields(data)
 {
-  document.getElementById("div_profilePicture").innerHTML = '<img focusable="false" height="225" src = "' + 'data:'+data.content_type+';base64,' + data.base64string +'"></img>';
+  document.getElementById("div_profilePicture").innerHTML = '<img focusable="false" width="100%" src = "' + 'data:'+data.content_type+';base64,' + data.base64string +'"></img>';
 
   var data_str = "";
   data_str += data.firstname + ' ' + data.lastname + '<br /> '
