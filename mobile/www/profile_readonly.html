@@ -19,55 +19,31 @@
         <link rel="stylesheet" href="css/index.css">
         <!-- Bootstrap core CSS -->
         <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
-        <!--cordova js hack, needed here for the camera plugin -->
-        <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+        <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
+
         <title>We Jam</title>
     </head>
 
     <!-- Custom styles for this template -->
-    <link href="css/registration.css" rel="stylesheet">
+    <link href="css/overview.css" rel="stylesheet">
   </head>
   <body class="bg-light">
 
 <div class="container">
   <main>
     <div class="py-5 text-center">
-      <h2>WeJam - Registration</h2>
+      <h2>WeJam - Profile</h2>
       </div>
-      <div class="col-12">
-        <form class="needs-validation" novalidate  onsubmit="save_instrument_data(event)">
+      <div class="col-md-7 col-lg-8">
           <div class="row g-3">
-            <div class="col-12">
-              <label for="instrument_selection" class="form-label">I play (Multiple selections possible)</label>
-              <select class="selectpicker form-control" id="instrument_selection" multiple>
-              </select>
-
+            <div class="col-12" id="div_profilePicture">
             </div>
-
-            <div class="col-12">
-              <label for="play_level_selection" class="form-label">Average PlayLevel</label>
-              <select class="selectpicker form-control" id="play_level_selection" >
-
-              </select>
+            <div class="col-12" id="user_data">
             </div>
-
-            <div class="col-12">
-              <label for="started_playing" class="form-label">Musician since</label>
-              <input type="date" class="form-control" id="started_playing" required>
-              <div class="invalid-feedback">
-                Valid Date is required.
-              </div>
-            </div>
-
-            <div class="col-12">
-              <label for="btn_picture" class="form-label">Profile Picture</label>
-              <button class="w-100 btn btn-secondary btn-lg" id="btn_picture" onclick="set_profile_picture(event)">Select Profile Picture</button>
-            </div>
-
           <hr class="my-4">
-
-          <button class="w-100 btn btn-primary btn-lg" type="submit">Register</button>
-        </form>
+          <div class="btn-group" id="btn_contacts">
+          </div>
+          <button class="w-100 btn btn-primary btn-lg" type="button" onclick="window.location = './overview.html'">Return to overview</button>
       </div>
     </div>
   </main>
@@ -78,6 +54,6 @@
 </div>
       <script src="js/bootstrap/bootstrap.bundle.min.js"></script>
       <script src="js/ajax.js"></script>
-      <script src="js/registration_part2.js"></script>
+      <script src="js/profile_readonly.js"></script>
   </body>
 </html>

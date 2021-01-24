@@ -28,7 +28,7 @@ body {
     background-image:linear-gradient(to bottom, #A7A7A7 0%, #E4E4E4 51%);
     font-family: system-ui, -apple-system, -apple-system-font, 'Segoe UI', 'Roboto', sans-serif;
     font-size:12px;
-    height:100vh;
+    /*height:100vh;*/
     margin:0px;
     padding:0px;
     /* Padding to avoid the "unsafe" areas behind notches in the screen */
@@ -107,4 +107,25 @@ h1 {
     body {
         background-image:linear-gradient(to bottom, #585858 0%, #1B1B1B 51%);
     }
+}
+
+.fa
+{
+  color:#6c757d;
+}
+.hyperlink_button {
+  color: #6c757d;
+  padding: 3px;
+  margin-right: 8px;
+  border-radius: 1px;
+  border: 1px;
+  border-radius: 5px;
+  border-color: #6c757d;
+  border-style: groove;
+  text-decoration: none;
+}
+
+#div_profilePicture
+{
+  width: 100% !important;
 }

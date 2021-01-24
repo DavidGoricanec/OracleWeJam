@@ -15,6 +15,12 @@ function getAge(dateString) {
     return age;
 }
 
+function open_readonly_profile(usr_id)
+{
+  window.sessionStorage.setItem("usr_id", usr_id);
+  window.location="./profile_readonly.html";
+}
+
 function build_overview_html_body(users)
 {
   //console.log(users);
@@ -24,7 +30,7 @@ function build_overview_html_body(users)
     html_string = html_string +
     '<div class="col">' +
       '<div class="card shadow-sm">' +
-        '<img class= "card-img-top" focusable="false" height="225" src = "' + 'data:image/jpeg;base64,' + users[i].base64string +'"></img>'+
+        '<img class= "card-img-top" onclick="open_readonly_profile('+ users[i].usr_id +')" focusable="false" src = "' + 'data:image/jpeg;base64,' + users[i].base64string +'"></img>'+
         '<div class="card-body">'+
           '<p class="card-text">'+ users[i].firstname +' '+ users[i].lastname +' ('+ getAge(users[i].birthday) + ')<br />' +users[i].playing_instruments +'</p>'+
           '<div class="d-flex justify-content-between align-items-center">'+

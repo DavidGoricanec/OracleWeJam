@@ -33,7 +33,8 @@ function registrate(e) {
       || firstName == "" || firstName == null || birthday == "" || birthday == null
       || password == "" || password == null || phonenumber == "" || phonenumber == null)
   {
-    alert("Please fill out all fields!");
+    //alert("Please fill out all fields!");
+    null;
   }
   else {
     birthday = formatDate(birthday);

@@ -76,10 +76,10 @@ function registrate_ajax(firstName, lastName, email, birthday, latitude, longitu
 
 function get_users()
 {
-  var data = JSON.parse(debug_json_string);
+  /*var data = JSON.parse(debug_json_string);
           build_overview_html_body(data.items);
+*/
 
-  /*
   var request = new XMLHttpRequest();
 
   request.open("GET",cloud_url+"/search_results", true);
@@ -96,7 +96,7 @@ function get_users()
      }
   });
   request.send();
-  */
+
 }
 
 function get_single_user(usr_id)
@@ -105,7 +105,7 @@ function get_single_user(usr_id)
 
   request.open("GET",cloud_url+"/auth", true);
   request.setRequestHeader("session_key",window.localStorage.getItem("session_key"));
-  request.setRequestHeader("usr_id",usr_id);
+  if(usr_id != null) { request.setRequestHeader("usr_id",usr_id); }
   request.addEventListener('load', function(event) {
      if (request.status >= 200 && request.status < 300) {
         data = JSON.parse(request.responseText);
@@ -131,7 +131,9 @@ function upload_media(is_profile_picture, title, content_type, base64str)
         data = JSON.parse(request.responseText);
         if(data.status == 200)
         {
-            alert('image upload success');
+            //alert('image upload success');
+            document.getElementById("btn_picture").classList.add("disabled");
+            document.getElementById("btn_picture").setAttribute("disabled", "disabled");
         }
         else {
           alert(data.err_msg);
@@ -141,6 +143,38 @@ function upload_media(is_profile_picture, title, content_type, base64str)
      }
   });
   request.send(base64str);
+}
+
+
+function update_current_user(p_firstname, p_lastname, p_phonenumber, p_email, p_birthday, p_instruments, p_play_level, p_started_playing)
+{
+  var request = new XMLHttpRequest();
+
+  request.open("POST",cloud_url+"/user_profile_update", true);
+  request.setRequestHeader("session_key",window.localStorage.getItem("session_key"));
+  request.setRequestHeader("firstname",p_firstname);
+  request.setRequestHeader("lastname",p_lastname);
+  request.setRequestHeader("phonenumber",p_phonenumber);
+  request.setRequestHeader("email",p_email);
+  request.setRequestHeader("birthday",p_birthday);
+  request.setRequestHeader("instruments",p_instruments);
+  request.setRequestHeader("play_level",p_play_level);
+  request.setRequestHeader("started_playing",p_started_playing);
+  request.addEventListener('load', function(event) {
+     if (request.status >= 200 && request.status < 300) {
+        data = JSON.parse(request.responseText);
+        if(data.status == 200)
+        {
+            window.location="./overview.html";
+        }
+        else {
+          alert(data.err_msg);
+        }
+     } else {
+        alert(request.responseText);
+     }
+  });
+  request.send();
 }
 
 function get_instruments()
@@ -171,7 +205,6 @@ function put_insturment(array_string)
         data = JSON.parse(request.responseText);
         if (data.status == 200)
         {
-
           window.location="./overview.html";
         }
         else {

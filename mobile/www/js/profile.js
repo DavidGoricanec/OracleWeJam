@@ -22,13 +22,13 @@
 document.addEventListener('deviceready', onDeviceReady(), false);
 
 function onDeviceReady() {
-    //get_single_user(window.sessionStorage.getItem("usr_id"));
+    //get_single_user(null);
     get_single_user(1);
 }
 
 function fill_out_profile_fields(data)
 {
-  document.getElementById("div_profilePicture").innerHTML = '<img focusable="false" height="225" src = "' + 'data:'+data.content_type+';base64,' + data.base64string +'"></img>';
+  document.getElementById("div_profilePicture").innerHTML = '<img focusable="false" src = "' + 'data:'+data.content_type+';base64,' + data.base64string +'"></img>';
   document.getElementById("firstName").value = data.firstname;
   document.getElementById("lastName").value = data.lastname;
   document.getElementById("phoneNumber").value = data.phonenumber;
@@ -38,13 +38,27 @@ function fill_out_profile_fields(data)
   document.getElementById("play_level").value = data.playing_level;
   document.getElementById("instruments").value = data.playing_instruments;
 
-  if(data.edit_priv='N')
+  /*if(data.edit_priv='N')
   {
     inputs = document.getElementsByTagName('input');
     for (index = 0; index < inputs.length; ++index) {
         inputs[index].setAttribute("disabled", "disabled");
         inputs[index].classList.add("disabled");
     }
-  }
+  }*/
+}
 
+function update_my_profile(e)
+{
+  e.preventDefault();
+  var firstname = document.getElementById("firstName").value;
+  var lastname = document.getElementById("lastName").value;
+  var phonenumber = document.getElementById("phoneNumber").value;
+  var email = document.getElementById("email").value;
+  var birthday = document.getElementById("birthday").value;
+  var started_playing = document.getElementById("started_playing").value;
+  var playing_level = document.getElementById("play_level").value;
+  var playing_instruments = document.getElementById("instruments").value;
+
+  update_current_user(firstname,lastname,phonenumber,email,formatDate(birthday),instruments,play_level,started_playing);
 }
